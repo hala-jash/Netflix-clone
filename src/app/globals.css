@@ -1,4 +1,32 @@
+/* Include Tailwind base styles */
 @tailwind base;
+
+/* Include Tailwind components styles */
 @tailwind components;
+
+/* Include Tailwind utilities styles */
 @tailwind utilities;
 
+/* Apply styles to the body element */
+body {
+  /* Set background color to a dark gray defined in Tailwind config */
+  @apply bg-zinc-900;
+  
+  /* Set the height of the body to full viewport height */
+  @apply h-full;
+  
+  /* Hide horizontal overflow on the body */
+  @apply overflow-x-hidden;
+}
+
+/* Apply styles to the element with id "__next" */
+#__next {
+  /* Set the height of the element to full viewport height */
+  @apply h-full;
+}
+
+/* Apply styles to the html element */
+html {
+  /* Set the height of the html element to full viewport height */
+  @apply h-full;
+}
