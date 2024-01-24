@@ -15,35 +15,67 @@ const handler  = NextAuth({
         },
         password: {
           label: 'Password',
-          type: 'password',
-        },
+          type: 'password'
+        }
       },
       async authorize(credentials) {
+        console.log(credentials , "credentials")
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Email and password required');
         }
+
         const user = await prismadb.user.findUnique({
           where: {
-            email: credentials.email,
-          },
+            email: credentials.email
+          }
         });
 
         if (!user || !user.hashedPassword) {
-          throw new Error('Email does not exist ');
+          throw new Error('Email does not exist');
         }
 
-        const isCorrectPassword = await compare(
-          credentials.password,
-          user.hashedPassword
-        );
+        const isCorrectPassword = await compare(credentials.password, user.hashedPassword)
+
+
         if (!isCorrectPassword) {
           throw new Error('Incorrect password');
         }
+
         return user;
-      },
-    }),
+      }
+    })
   ],
 
+  callbacks: {
+    async jwt({ token, user }) {
+      console.log("jwt callback", { token, user });
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          image:user.image
+        };
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      console.log("session callback", { token, user, session });
+      // pass in userid and name and email to the session
+      return {
+        ...session,
+        user:{
+          id: token.id,
+          name: token.name,
+          email: token.email,
+          image:token.image
+        }
+      };
+      return session
+    },
+  },
+  
   pages: {
     signIn: '/auth',
   },
@@ -54,7 +86,7 @@ const handler  = NextAuth({
   },
 
   jwt: {
-    secret: process.env.NEXTAUTH_JWT_SECRET,
+  secret: process.env.NEXTAUTH_JWT_SECRET
   },
   secret: process.env.NEXTAUTH_SECRET,
 });

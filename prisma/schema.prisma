@@ -13,7 +13,7 @@ datasource db {
 //  auto-generated default value, a custom database field name (_id), and a type of ObjectId to align with MongoDB conventions.
 //  
 model User{
-  id String@id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   image String?
   email String? @unique
@@ -27,7 +27,7 @@ model User{
 }
 
 model Account{
-    id String@id @default(auto()) @map("_id") @db.ObjectId
+    id String @id @default(auto()) @map("_id") @db.ObjectId
     userId String @db.ObjectId
     type String
     provider String
@@ -46,7 +46,7 @@ model Account{
 }
 
 model Session{
-    id String@id @default(auto()) @map("_id") @db.ObjectId
+    id String @id @default(auto()) @map("_id") @db.ObjectId
     sessionToken String @unique 
     userId String @db.ObjectId
     expires DateTime

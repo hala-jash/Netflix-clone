@@ -4,7 +4,6 @@ import { useCallback, useState } from 'react';
 import axios from 'axios';
 
 import { useRouter } from 'next/navigation'
-
 import { signIn } from 'next-auth/react';
 
 const Auth = () => {
@@ -48,7 +47,6 @@ const Auth = () => {
       console.log(error);
     }
   }, [email, name, password, login ]);
-
 
 
 
