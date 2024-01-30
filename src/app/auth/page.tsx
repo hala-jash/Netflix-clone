@@ -23,14 +23,14 @@ const Auth = () => {
       await signIn('credentials', {
         email,
         password,
-        redirect: false,
+        redirect: true,
         callbackUrl: '/profiles'
       });
 
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, router]);
+  }, [email, password]);
   
   const register = useCallback(async () => {
     try {
