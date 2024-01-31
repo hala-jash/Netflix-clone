@@ -30,7 +30,7 @@ const handler  = NextAuth({
         }
       },
       async authorize(credentials) {
-        console.log(credentials , "credentials")
+        // console.log(credentials , "credentials")
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Email and password required');
         }
@@ -59,7 +59,7 @@ const handler  = NextAuth({
 
   callbacks: {
     async jwt({ token, user }) {
-      console.log("jwt callback", { token, user });
+      // console.log("jwt callback", { token, user });
       if (user) {
         return {
           ...token,
@@ -72,7 +72,7 @@ const handler  = NextAuth({
       return token;
     },
     async session({ session, token, user }) {
-      console.log("session callback", { token, user, session });
+      // console.log("session callback", { token, user, session });
       // pass in userid and name and email to the session
       return {
         ...session,
