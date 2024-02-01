@@ -5,7 +5,7 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 const BillBoard = async () => {
     const BillBoard = await getBillBoard()
     
-    console.log(BillBoard, "BILLBOARD video")
+    // console.log(BillBoard, "BILLBOARD video")
   return (
     <div className="relative h-[56.25vw]  ">
       <video className="
@@ -58,6 +58,7 @@ const BillBoard = async () => {
           flex-row
           items-center
           hover:bg-opacity-20
+          transition
           ">
             <AiOutlineInfoCircle className="mr-1" />
             More Info
